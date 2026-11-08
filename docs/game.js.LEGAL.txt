@@ -68,8 +68,10 @@ lucide-react/dist/esm/icons/arrow-right.mjs:
 lucide-react/dist/esm/icons/chevron-down.mjs:
 lucide-react/dist/esm/icons/circle-question-mark.mjs:
 lucide-react/dist/esm/icons/clock-3.mjs:
+lucide-react/dist/esm/icons/eye.mjs:
 lucide-react/dist/esm/icons/flag.mjs:
 lucide-react/dist/esm/icons/gauge.mjs:
+lucide-react/dist/esm/icons/map.mjs:
 lucide-react/dist/esm/icons/maximize-2.mjs:
 lucide-react/dist/esm/icons/pause.mjs:
 lucide-react/dist/esm/icons/play.mjs:

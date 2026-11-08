@@ -14,3 +14,14 @@ Published means an explicit public OSM infrastructure tag, not an official railw
 signal indication, current temporary restriction, or the actual speed of a specific train.
 Unknown speed coverage is separately marked as a game model. All geometry distances are game-route
 coordinates and are not official engineering kilometre markers.
+
+
+2026-11-08 expansion:
+The prior 8,688 records across 22 directions are preserved unchanged.
+An additional 5,572 records across 10 directions cover Beijing-Tianjin intercity,
+Tianjin-Qinhuangdao, Beijing-Guangzhou HSR, the Beijing underground diameter
+connector, and Harbin-Dalian HSR. Total: 14,260 directional records.
+Every added record has explicit osmVersion/osmTimestamp provenance.
+The underground tunnel has no maxspeed tags in its main relation; only tagged
+station-end tracks are published, and the missing tunnel speed remains a model.
+Neither a game model nor an OSM tag is an official temporary railway restriction.
