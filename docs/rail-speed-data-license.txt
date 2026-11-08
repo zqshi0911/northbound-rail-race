@@ -1,0 +1,16 @@
+Railway infrastructure speed-tag data
+Copyright OpenStreetMap contributors. Licensed under the Open Database License (ODbL) 1.0.
+https://www.openstreetmap.org/copyright
+https://opendatacommons.org/licenses/odbl/1-0/
+
+Derived data: /rail-speed-profiles.json
+Source: public OpenStreetMap API / Overpass objects, retrieved 2026-11-07 to 2026-11-08.
+Each published segment preserves its OSM way ID, version, timestamp, source URL and speed-tag field.
+
+RailsMaps (https://railsmaps.com/china/max-speed) was consulted to identify the OSM maxspeed source.
+This application does not use RailsMaps map styling, tile service, PNG exports or proprietary interface assets.
+
+Published means an explicit public OSM infrastructure tag, not an official railway operating order,
+signal indication, current temporary restriction, or the actual speed of a specific train.
+Unknown speed coverage is separately marked as a game model. All geometry distances are game-route
+coordinates and are not official engineering kilometre markers.

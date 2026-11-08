@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-11-07",
+  "version": "2026-11-07 公开接口与时刻表核查",
+  "coverageNote": "已收录标准车次未取得可核实的现行不停站通过时刻。CNRail与公开售票时刻表只有办理停站；缺失不等于通过时间为零。内置不作线性插值，不将停站到发时刻复制为通过时刻。",
+  "records": [],
+  "services": [
+    {
+      "serviceId": "k7711-jingcheng-forward",
+      "trainNumber": "K7711",
+      "routeId": "jingcheng",
+      "direction": "forward",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://www.ailieche.com/k7711/",
+        "https://www.gaotie.com.cn/lieche/beijing-chengde-page2.html",
+        "http://cnrail.geogv.org/api/route/CN%2FK7711?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "k7712-jingcheng-reverse",
+      "trainNumber": "K7712",
+      "routeId": "jingcheng-reverse",
+      "direction": "reverse",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://www.gaotie.com.cn/checi/K7712.html",
+        "https://m.icauto.com.cn/chuxing/gtr_12987.html",
+        "http://cnrail.geogv.org/api/route/CN%2FK7712?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "k7333-shenji-forward",
+      "trainNumber": "K7333",
+      "routeId": "shenji",
+      "direction": "forward",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://trains.ctrip.com/trainschedule/K7333",
+        "https://train.qunar.com/train/timetable/K7333",
+        "http://cnrail.geogv.org/api/route/CN%2FK7333?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "k7334-shenji-reverse",
+      "trainNumber": "K7334",
+      "routeId": "shenji-reverse",
+      "direction": "reverse",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://huoche.qunar.com/train/timetable/K7334",
+        "https://shike.gaotie.cn/checi.asp?CheCi=K7334",
+        "http://cnrail.geogv.org/api/route/CN%2FK7334?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g3601-jingshen-forward",
+      "trainNumber": "G3601",
+      "routeId": "jingshen",
+      "direction": "forward",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://huoche.qunar.com/train/timetable/G3601",
+        "https://www.crecc.com/huoche/g3601.html",
+        "http://cnrail.geogv.org/api/route/CN%2FG3601?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g3606-jingshen-reverse",
+      "trainNumber": "G3606",
+      "routeId": "jingshen-reverse",
+      "direction": "reverse",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://trains.ctrip.com/trainschedule/G3606/",
+        "https://huoche.qunar.com/train/timetable/G3606",
+        "http://cnrail.geogv.org/api/route/CN%2FG3606?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g1-jinghu-forward",
+      "trainNumber": "G1",
+      "routeId": "jinghu",
+      "direction": "forward",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://www.ailieche.com/g1/",
+        "https://huoche.qunar.com/train/timetable/G1?date=2026-11-06",
+        "http://cnrail.geogv.org/api/route/CN%2FG1?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g2-jinghu-reverse",
+      "trainNumber": "G2",
+      "routeId": "jinghu-reverse",
+      "direction": "reverse",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://www.ailieche.com/g2/",
+        "https://huoche.qunar.com/train/timetable/G2?date=2026-11-06",
+        "http://cnrail.geogv.org/api/route/CN%2FG2?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g6926-jiqing-reverse",
+      "trainNumber": "G6926",
+      "routeId": "jiqing-reverse",
+      "direction": "reverse",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://www.crecc.com/huoche/g6926.html",
+        "https://www.gaotie.com.cn/checi/G6926.html",
+        "http://cnrail.geogv.org/api/route/CN%2FG6926?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "d1611-shiji-forward",
+      "trainNumber": "D1611",
+      "routeId": "shiji",
+      "direction": "forward",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://huoche.qunar.com/train/timetable/D1611",
+        "https://www.modiauto.com.cn/cx/train_d1611.html",
+        "http://cnrail.geogv.org/api/route/CN%2FD1611?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "d1612-shiji-reverse",
+      "trainNumber": "D1612",
+      "routeId": "shiji-reverse",
+      "direction": "reverse",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://trains.ctrip.com/trainschedule/D1612/",
+        "https://trains.ctrip.com/TrainBooking/jinan-shijiazhuang2/dongche",
+        "http://cnrail.geogv.org/api/route/CN%2FD1612?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g71-jiqing-forward",
+      "trainNumber": "G71",
+      "routeId": "jiqing",
+      "direction": "forward",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://trains.ctrip.com/TrainSchedule/G71",
+        "https://www.crecc.com/huoche/g71.html",
+        "https://huoche.qunar.com/train/timetable/G71",
+        "http://cnrail.geogv.org/api/route/CN%2FG71?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g71-jinghu_jiqing-forward",
+      "trainNumber": "G71",
+      "routeId": "jinghu-jiqing",
+      "direction": "forward",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://trains.ctrip.com/TrainSchedule/G71",
+        "https://www.crecc.com/huoche/g71.html",
+        "https://huoche.qunar.com/train/timetable/G71",
+        "http://cnrail.geogv.org/api/route/CN%2FG71?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g72-jinghu_jiqing-reverse",
+      "trainNumber": "G72",
+      "routeId": "jinghu-jiqing-reverse",
+      "direction": "reverse",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://trains.ctrip.com/trainschedule/G72",
+        "https://train.qunar.com/train/timetable/G72?date=2026-10-26",
+        "http://cnrail.geogv.org/api/route/CN%2FG72?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g71-beijing_hub_jiqing-forward",
+      "trainNumber": "G71",
+      "routeId": "beijing-jiqing",
+      "direction": "forward",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://trains.ctrip.com/TrainSchedule/G71",
+        "https://www.crecc.com/huoche/g71.html",
+        "https://huoche.qunar.com/train/timetable/G71",
+        "http://cnrail.geogv.org/api/route/CN%2FG71?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g2071-shiji_jiqing-forward",
+      "trainNumber": "G2071",
+      "routeId": "shiji-jiqing",
+      "direction": "forward",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://www.crecc.com/huoche/g2070.html",
+        "https://train.qunar.com/train/tickets/shijiazhuang-to-gaomi/2026-10-02",
+        "http://cnrail.geogv.org/api/route/CN%2FG2071?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    },
+    {
+      "serviceId": "g2072-shiji_jiqing-reverse",
+      "trainNumber": "G2072",
+      "routeId": "shiji-jiqing-reverse",
+      "direction": "reverse",
+      "status": "unpublished",
+      "publishedCount": 0,
+      "sourceUrls": [
+        "https://trains.ctrip.com/TrainSchedule/G2072",
+        "https://trains.ctrip.com/trainbooking/qingdaobei-zhengzhoudong/gaotie",
+        "https://trains.ctrip.com/trainbooking/zibo-shijiazhuangbei/dongche/",
+        "http://cnrail.geogv.org/api/route/CN%2FG2072?locale=zhcn"
+      ],
+      "message": "不停站通过时刻未公开，不计通过分；可导入有来源与版本的真实运行图。"
+    }
+  ]
+}
