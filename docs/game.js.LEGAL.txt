@@ -73,6 +73,7 @@ lucide-react/dist/esm/icons/flag.mjs:
 lucide-react/dist/esm/icons/gauge.mjs:
 lucide-react/dist/esm/icons/map.mjs:
 lucide-react/dist/esm/icons/maximize-2.mjs:
+lucide-react/dist/esm/icons/music-2.mjs:
 lucide-react/dist/esm/icons/pause.mjs:
 lucide-react/dist/esm/icons/play.mjs:
 lucide-react/dist/esm/icons/rotate-ccw.mjs:
