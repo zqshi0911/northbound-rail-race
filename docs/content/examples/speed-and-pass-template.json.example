@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "example-speed-and-pass-template",
+  "version": "replace-before-use-v1",
+  "title": "字段模板，非有效独立包：须补入新线路、新车次与真实来源",
+  "speedSegments": [
+    {
+      "routeId": "replace-with-new-route-id",
+      "coordinateSystem": "route-km",
+      "fromKm": 0,
+      "toKm": 1,
+      "limit": 80,
+      "evidence": "published",
+      "sourceUrl": "REPLACE_WITH_VERIFIABLE_PUBLIC_SOURCE_URL",
+      "sourceLabel": "待替换：演示数值不能作为真实铁路限速",
+      "version": "REPLACE_WITH_SOURCE_VERSION"
+    }
+  ],
+  "passTimes": [
+    {
+      "routeId": "replace-with-new-route-id",
+      "serviceId": "replace-with-new-service-id",
+      "station": "替换为真实中间通过站",
+      "time": "12:05:00",
+      "day": 0,
+      "evidence": "estimated",
+      "sourceUrl": "REPLACE_WITH_VERIFIABLE_PUBLIC_SOURCE_URL",
+      "version": "模板估计钟点，不计正点分"
+    }
+  ]
+}

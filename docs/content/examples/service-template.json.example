@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "example-service-template-pack",
+  "version": "practice-v1",
+  "title": "虚构练习车次字段模板：替换真实时刻和来源后才能发布",
+  "services": [
+    {
+      "id": "example-practice-forward-v1",
+      "trainNumber": "虚构练习01（非图定）",
+      "routeId": "example-synthetic-line-v1",
+      "direction": "forward",
+      "from": "虚构练习甲",
+      "to": "虚构练习乙",
+      "version": "虚构练习钟点，不是现实运行图",
+      "versionNote": "仅展示字段；先加载同名虚构线路，实际发布须替换为核验过的资料。",
+      "verifiedAt": "REPLACE_WITH_VERIFICATION_DATE",
+      "sourceUrls": ["REPLACE_WITH_VERIFIABLE_PUBLIC_SOURCE_URL"],
+      "maxSpeed": 80,
+      "stops": [
+        {"station": "虚构练习甲", "departure": "12:00:00", "departureDay": 0},
+        {"station": "虚构练习中", "arrival": "12:03:00", "departure": "12:04:00", "arrivalDay": 0, "departureDay": 0},
+        {"station": "虚构练习乙", "arrival": "12:07:00", "arrivalDay": 0}
+      ],
+      "speedLimits": [{"fromKm": 0, "toKm": 1.7, "maxSpeed": 80, "evidence": "model"}]
+    }
+  ]
+}

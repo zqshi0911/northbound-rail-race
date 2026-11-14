@@ -1,0 +1,882 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://zqshi0911.github.io/northbound-rail-race/content/schemas/rail-content-pack.schema.json",
+  "title": "一路向北 · 独立线路与车次资料包 v1",
+  "description": "UTF-8 JSON结构格式。还需通过游戏的轨道、引用、版本冲突和累计资源校验。单JSON文件最多8MiB；新增基础线路总计80条、坐标200000点、车次2000项。",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "$ref": "#/$defs/id"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "maxLength": 80
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "maxLength": 120
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/route"
+      },
+      "minItems": 0,
+      "maxItems": 80
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/service"
+      },
+      "minItems": 0,
+      "maxItems": 2000
+    },
+    "speedSegments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/speedSegment"
+      },
+      "minItems": 0,
+      "maxItems": 100000
+    },
+    "passTimes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/passTime"
+      },
+      "minItems": 0,
+      "maxItems": 20000
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "id",
+    "version",
+    "title"
+  ],
+  "propertyNames": {
+    "not": {
+      "enum": [
+        "__proto__",
+        "prototype",
+        "constructor"
+      ]
+    }
+  },
+  "additionalProperties": true,
+  "anyOf": [
+    {
+      "required": [
+        "routes"
+      ],
+      "properties": {
+        "routes": {
+          "type": "array",
+          "minItems": 1
+        }
+      }
+    },
+    {
+      "required": [
+        "services"
+      ],
+      "properties": {
+        "services": {
+          "type": "array",
+          "minItems": 1
+        }
+      }
+    },
+    {
+      "required": [
+        "speedSegments"
+      ],
+      "properties": {
+        "speedSegments": {
+          "type": "array",
+          "minItems": 1
+        }
+      }
+    },
+    {
+      "required": [
+        "passTimes"
+      ],
+      "properties": {
+        "passTimes": {
+          "type": "array",
+          "minItems": 1
+        }
+      }
+    }
+  ],
+  "$comment": "routes目录文件必须含非空routes；services目录文件必须含非空services。不能覆盖内置或已注册ID；同包版本须保持相同内容。JSON Schema不计算球面轨迹长度、跨字段区间关系、来源真实性、跨文件引用及累计资源上限，这些由运行时事务检查。JSON嵌套最多16层。",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "url": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "format": "uri",
+      "pattern": "^https?://(?![^/?#]*@)[^/?#]+(?:[/?#].*)?$",
+      "description": "公开http/https来源网址，不含用户名或密码。结构校验不证明来源真实。"
+    },
+    "urls": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/url"
+      },
+      "minItems": 1,
+      "maxItems": 30
+    },
+    "clock": {
+      "type": "string",
+      "minLength": 4,
+      "maxLength": 8,
+      "pattern": "^(?:[01]?\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d)?$",
+      "description": "HH:mm或HH:mm:ss；建议两位小时和秒。"
+    },
+    "day": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 30
+    },
+    "coordinate": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "type": "number",
+          "minimum": -85,
+          "maximum": 85
+        }
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "WGS84 [经度, 纬度]，顺着实际轨道运行方向排列。"
+    },
+    "station": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 80
+        },
+        "lon": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "lat": {
+          "type": "number",
+          "minimum": -85,
+          "maximum": 85
+        },
+        "distanceKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20000
+        }
+      },
+      "required": [
+        "name",
+        "lon",
+        "lat"
+      ],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "segment": {
+      "type": "object",
+      "properties": {
+        "fromKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20000
+        },
+        "toKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20000
+        },
+        "bridge": {
+          "type": "boolean"
+        },
+        "tunnel": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fromKm",
+        "toKm"
+      ],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "$comment": "运行时还要求toKm>fromKm，并检查toKm不超出计算轨道长度。"
+    },
+    "lineSection": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 200
+        },
+        "fromKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20000
+        },
+        "toKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20000
+        }
+      },
+      "required": [
+        "name",
+        "fromKm",
+        "toKm"
+      ],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "$comment": "运行时还检查公里区间严格正向且位于实际轨迹内。"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "english": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 2000
+        },
+        "tag": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 2000
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 2000
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "landscape": {
+          "enum": [
+            "mountain",
+            "forest",
+            "viaduct"
+          ]
+        }
+      },
+      "required": [],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "stop": {
+      "type": "object",
+      "properties": {
+        "station": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 80
+        },
+        "arrival": {
+          "$ref": "#/$defs/clock"
+        },
+        "departure": {
+          "$ref": "#/$defs/clock"
+        },
+        "arrivalDay": {
+          "$ref": "#/$defs/day"
+        },
+        "departureDay": {
+          "$ref": "#/$defs/day"
+        }
+      },
+      "required": [
+        "station"
+      ],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "anyOf": [
+        {
+          "required": [
+            "arrival"
+          ]
+        },
+        {
+          "required": [
+            "departure"
+          ]
+        }
+      ]
+    },
+    "unpublishedStop": {
+      "type": "object",
+      "properties": {
+        "station": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 80
+        },
+        "sourceUrls": {
+          "$ref": "#/$defs/urls"
+        },
+        "evidenceDate": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "station",
+        "sourceUrls"
+      ],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "serviceSpeedLimit": {
+      "type": "object",
+      "properties": {
+        "fromKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20000
+        },
+        "toKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20000
+        },
+        "maxSpeed": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "evidence": {
+          "enum": [
+            "model",
+            "published"
+          ]
+        },
+        "sourceUrl": {
+          "$ref": "#/$defs/url"
+        },
+        "sourceLabel": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "fromKm",
+        "toKm",
+        "maxSpeed"
+      ],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "evidence": {
+                "const": "published"
+              }
+            },
+            "required": [
+              "evidence"
+            ]
+          },
+          "then": {
+            "required": [
+              "sourceUrl"
+            ]
+          }
+        }
+      ],
+      "$comment": "模型用evidence:model；published必须有可核验来源。toKm>fromKm由程序检查。"
+    },
+    "speedSegment": {
+      "type": "object",
+      "properties": {
+        "routeId": {
+          "$ref": "#/$defs/id"
+        },
+        "coordinateSystem": {
+          "const": "route-km"
+        },
+        "fromKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20000
+        },
+        "toKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 20000
+        },
+        "limit": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 400
+        },
+        "sourceUrl": {
+          "$ref": "#/$defs/url"
+        },
+        "sourceLabel": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 500
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 120
+        },
+        "evidence": {
+          "const": "published"
+        },
+        "osmWayId": {
+          "type": "string"
+        },
+        "osmVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "osmTimestamp": {
+          "type": "string"
+        },
+        "osmTag": {
+          "type": "string"
+        },
+        "directionScope": {
+          "enum": [
+            "osm-directional-tag",
+            "undirected-osm-maxspeed-tag"
+          ]
+        }
+      },
+      "required": [
+        "routeId",
+        "coordinateSystem",
+        "fromKm",
+        "toKm",
+        "limit",
+        "sourceUrl",
+        "sourceLabel",
+        "version",
+        "evidence"
+      ],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "$comment": "必须随同一包的新线路提交；正反向分别写routeId与各自起点公里。运行时检查实际轨道范围及来源。"
+    },
+    "passTime": {
+      "type": "object",
+      "properties": {
+        "serviceId": {
+          "$ref": "#/$defs/id"
+        },
+        "routeId": {
+          "$ref": "#/$defs/id"
+        },
+        "station": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 80
+        },
+        "time": {
+          "$ref": "#/$defs/clock"
+        },
+        "day": {
+          "$ref": "#/$defs/day"
+        },
+        "sourceUrl": {
+          "$ref": "#/$defs/url"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 120
+        },
+        "evidence": {
+          "enum": [
+            "published",
+            "estimated"
+          ]
+        }
+      },
+      "required": [
+        "serviceId",
+        "routeId",
+        "station",
+        "time",
+        "day",
+        "sourceUrl",
+        "version",
+        "evidence"
+      ],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "$comment": "须随同一包的新车次提交，站点不能同时是该车次停靠站，钟点和位置须在任务区间内。estimated不纳入正点计分。"
+    },
+    "route": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id",
+          "not": {
+            "pattern": "-reverse$"
+          },
+          "maxLength": 92
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 120
+        },
+        "highSpeed": {
+          "type": "boolean"
+        },
+        "doubleTrack": {
+          "type": "boolean"
+        },
+        "category": {
+          "enum": [
+            "line",
+            "cross",
+            "connector"
+          ]
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/coordinate"
+          },
+          "minItems": 3,
+          "maxItems": 120000
+        },
+        "stations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/station"
+          },
+          "minItems": 2,
+          "maxItems": 1500
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/segment"
+          },
+          "minItems": 0,
+          "maxItems": 120000
+        },
+        "lineSections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/lineSection"
+          },
+          "minItems": 1,
+          "maxItems": 300
+        },
+        "source": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "__proto__",
+                "prototype",
+                "constructor"
+              ]
+            }
+          },
+          "description": "保留真实轨迹来源与许可；推荐填写name、url、license、retrievedAt、note。虚构练习必须明确说明synthetic。"
+        },
+        "lengthKm": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 3000
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "highSpeed",
+        "doubleTrack",
+        "coordinates",
+        "stations",
+        "segments",
+        "source"
+      ],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "$comment": "实际长度由坐标计算：0.01—3000km，相邻点不得超过10km。线路自动生成-reverse方向；站名去尾站字后不得重复。"
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "trainNumber": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 80
+        },
+        "routeId": {
+          "$ref": "#/$defs/id"
+        },
+        "direction": {
+          "enum": [
+            "forward",
+            "reverse"
+          ]
+        },
+        "from": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 80
+        },
+        "to": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 80
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 120
+        },
+        "versionNote": {
+          "type": "string"
+        },
+        "verifiedAt": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S",
+          "maxLength": 40
+        },
+        "sourceUrls": {
+          "$ref": "#/$defs/urls"
+        },
+        "stops": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/stop"
+          },
+          "minItems": 2,
+          "maxItems": 1500
+        },
+        "unpublishedStops": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/unpublishedStop"
+          },
+          "minItems": 0,
+          "maxItems": 1500
+        },
+        "maxSpeed": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 500
+        },
+        "maxSpeedNote": {
+          "type": "string"
+        },
+        "maxSpeedSourceUrls": {
+          "$ref": "#/$defs/urls"
+        },
+        "serviceClass": {
+          "enum": [
+            "benchmark",
+            "regular"
+          ]
+        },
+        "serviceClassNote": {
+          "type": "string"
+        },
+        "serviceClassSourceUrls": {
+          "$ref": "#/$defs/urls"
+        },
+        "speedLimits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/serviceSpeedLimit"
+          },
+          "minItems": 0,
+          "maxItems": 20000
+        },
+        "sliceNote": {
+          "type": "string"
+        },
+        "sectionNote": {
+          "type": "string"
+        },
+        "sourceTrain": {
+          "type": "string"
+        },
+        "originalFrom": {
+          "type": "string"
+        },
+        "originalTo": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "trainNumber",
+        "routeId",
+        "direction",
+        "from",
+        "to",
+        "version",
+        "verifiedAt",
+        "sourceUrls",
+        "stops"
+      ],
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      },
+      "additionalProperties": true,
+      "$comment": "车次ID不得覆盖旧ID；方向须匹配线路。首末站、站序及钟点顺序由程序编译检查。反向车次需独立真实表，不自动反转正向时刻。"
+    }
+  }
+}
